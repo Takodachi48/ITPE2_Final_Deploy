@@ -1,0 +1,3 @@
+type,question,optionA,optionB,optionC,optionD,correct,acceptedAnswers,points
+choice,What is 2+2?,2,3,4,5,C,,1
+text,Name the capital of France,,,,,Paris,1
