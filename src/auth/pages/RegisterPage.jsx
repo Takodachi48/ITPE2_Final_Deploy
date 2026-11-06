@@ -105,7 +105,7 @@ export default function RegisterPage() {
             {fieldErrors.studentNumber && <span className="field-error">{fieldErrors.studentNumber}</span>}
           </label>
         )}
-        <button type="submit" className="btn btn-solid" disabled={submitting}>
+        <button type="submit" className="btn btn-solid auth-submit" disabled={submitting}>
           {submitting ? 'Creating...' : 'Create account'}
         </button>
       </form>

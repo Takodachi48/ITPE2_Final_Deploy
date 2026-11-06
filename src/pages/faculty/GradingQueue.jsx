@@ -231,7 +231,7 @@ export default function GradingQueue() {
             className={`btn ${statusFilter === "all" ? "btn-solid" : ""}`}
             onClick={() => setStatusFilter("all")}
           >
-            All Submissions
+            All submissions
           </button>
         </div>
 

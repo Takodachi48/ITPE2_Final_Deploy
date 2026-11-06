@@ -7,8 +7,9 @@ export default function PassingPercentControl({ value, onChange }) {
   return (
     <div className='pp-control'>
       <div className='pp-presets'>
-        <button type='button' className={'btn ' + (value === 50 ? 'active' : '')} onClick={() => onChange(50)}>50%</button>
-        <button type='button' className={'btn ' + (value === 75 ? 'active' : '')} onClick={() => onChange(75)}>75%</button>
+        <button type='button' className={'btn ' + (value === 50 ? 'btn-solid active' : 'btn-line')} onClick={() => onChange(50)}>50%</button>
+        <button type='button' className={'btn ' + (value === 75 ? 'btn-solid active' : 'btn-line')} onClick={() => onChange(75)}>75%</button>
+
       </div>
       <label>
         Custom

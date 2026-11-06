@@ -69,7 +69,7 @@ export default function LoginPage() {
           </div>
           {fieldErrors.password && <span className="field-error">{fieldErrors.password}</span>}
         </label>
-        <button type="submit" className="btn btn-solid" disabled={submitting}>
+        <button type="submit" className="btn btn-solid auth-submit" disabled={submitting}>
           {submitting ? 'Signing in...' : 'Sign in'}
         </button>
       </form>

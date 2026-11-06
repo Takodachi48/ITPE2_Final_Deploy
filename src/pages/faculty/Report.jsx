@@ -220,11 +220,11 @@ export default function Report() {
 
       {/* Controls */}
       <div className="rv-report-controls">
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", minWidth: 0 }}>
           <label style={{ fontSize: "0.82rem", color: "var(--muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "var(--font-mono)" }}>
             Sort by
           </label>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div className="rv-report-sort-btns">
             <button
               type="button"
               className={`btn ${sort === "surname" ? "btn-solid" : "btn-line"}`}
@@ -279,7 +279,7 @@ export default function Report() {
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "flex-end" }}>
+        <div className="rv-report-actions">
           <button type="button" className="btn btn-solid" onClick={() => window.print()}>
             Print
           </button>

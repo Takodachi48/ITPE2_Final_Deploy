@@ -101,17 +101,23 @@ export default function SubjectSettings() {
   if (!subject) return <div className='page-shell'><p>Subject not found.</p></div>;
 
   return (
-    <div className='page-shell'>
+    <div className='page-shell ss-page'>
       <div className="page-back"><Link className="page-back-link" to={`/faculty/subjects/${id}/topics`}>← Back to topics</Link></div>
-      <h1>Subject Settings</h1>
-      <h2>{subject.code} · {subject.name}</h2>
+
+      <header className="ss-header">
+        <h1>Subject settings</h1>
+        <p className="ss-subject" title={`${subject.code} · ${subject.name}`}>{subject.code} · {subject.name}</p>
+      </header>
+
       {error && <div className='auth-error' role='alert'>{error}</div>}
 
       {/* eslint-disable-next-line no-constant-binary-expression */}
       {false && (
-      <section>
-        <h3>Schedule (temporary)</h3>
-        <p className='help'>Change the start date (week 1) to automatically reschedule succeeding topic dates.</p>
+      <section className="ss-card">
+        <div className="ss-card-head">
+          <h2>Schedule</h2>
+          <p className='ss-help'>Change the start date (week 1) to automatically reschedule succeeding topic dates.</p>
+        </div>
         <label className="qb-label" htmlFor="ss-start-date">Start date (week 1)</label>
         <input id="ss-start-date" type="date" className="input" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         <label className="qb-label" htmlFor="ss-meeting-day" style={{ marginTop: 8 }}>Meeting day (optional)</label>
@@ -119,29 +125,45 @@ export default function SubjectSettings() {
           <option value="">Weekly (+7 days) / no fixed weekday</option>
           {WEEKDAYS.map((d) => <option key={d.value} value={String(d.value)}>{d.label}</option>)}
         </select>
-        <div style={{ marginTop: 8 }}>
-          <button className='btn' onClick={handleSaveSchedule} disabled={savingSchedule}>{savingSchedule ? 'Saving…' : 'Save & reschedule topics'}</button>
+        <div className="ss-actions">
+          <button className='btn btn-solid' onClick={handleSaveSchedule} disabled={savingSchedule}>{savingSchedule ? 'Saving…' : 'Save & reschedule topics'}</button>
         </div>
       </section>
       )}
 
-      <section>
-        <h3>Passing percent</h3>
+      <section className="ss-card">
+        <div className="ss-card-head">
+          <h2>Passing percent</h2>
+          <p className='ss-help'>Choose the minimum score students need to pass. Changing this affects pass/fail results automatically.</p>
+        </div>
         <PassingPercentControl value={passingPercent} onChange={setPassingPercent} />
-        <p className='help'>Changing this affects pass/fail results automatically.</p>
-        <button className='btn' onClick={handleSavePassing} disabled={saving}>{saving ? 'Saving…' : 'Save passing percent'}</button>
+        <div className="ss-actions">
+          <button className='btn btn-solid' onClick={handleSavePassing} disabled={saving}>{saving ? 'Saving…' : 'Save passing percent'}</button>
+        </div>
       </section>
 
-      <section>
-        <h3>Enrollment</h3>
-        <p>Status: {subject.enrollmentOpen ? 'Open' : 'Closed'}</p>
-        <p className='help'>Students join using the code shown on the Topics page.</p>
-        <button className='btn' onClick={handleToggleEnrollment}>{subject.enrollmentOpen ? 'Close enrollment' : 'Open enrollment'}</button>
+      <section className="ss-card">
+        <div className="ss-card-head">
+          <h2>Enrollment</h2>
+          <p className='ss-help'>Students join using the code shown on the Topics page.</p>
+        </div>
+        <div className="ss-status-row">
+          <span className="ss-status-label">Status</span>
+          <span className={`ss-status-pill ${subject.enrollmentOpen ? 'is-open' : 'is-closed'}`}>{subject.enrollmentOpen ? 'Open' : 'Closed'}</span>
+        </div>
+        <div className="ss-actions">
+          <button className='btn btn-line' onClick={handleToggleEnrollment}>{subject.enrollmentOpen ? 'Close enrollment' : 'Open enrollment'}</button>
+        </div>
       </section>
 
-      <section>
-        <h3>Archive</h3>
-        <button className='btn btn-danger' onClick={handleArchive}>Archive subject</button>
+      <section className="ss-card ss-card-danger">
+        <div className="ss-card-head">
+          <h2>Archive</h2>
+          <p className='ss-help'>Archiving hides this subject from active lists. This action is intended to be permanent for normal use.</p>
+        </div>
+        <div className="ss-actions">
+          <button className='btn btn-danger' onClick={handleArchive}>Archive subject</button>
+        </div>
       </section>
     </div>
   );

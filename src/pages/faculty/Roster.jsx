@@ -89,8 +89,8 @@ export default function Roster() {
   return (
     <div className="page-shell">
       <div className="page-back"><Link className="page-back-link" to={`/faculty/subjects/${id}/topics`}>← Back to topics</Link></div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-        <div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap", marginBottom: 16, minWidth: 0 }}>
+        <div style={{ minWidth: 0 }}>
           <h1 style={{ margin: "0 0 4px" }}>{subject ? subject.name : "Progress"}</h1>
           <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.92rem" }}>
             {students.length} student{students.length !== 1 ? "s" : ""} ×{" "}
@@ -124,6 +124,7 @@ export default function Roster() {
 
       {error && <div className="auth-error" role="alert">{error}</div>}
 
+      <div className="rv-scroll">
       <div className="rv-grid">
         <div className="rv-cell rv-header">Student</div>
         {topicIds.map((t) => (
@@ -155,6 +156,7 @@ export default function Roster() {
             })}
           </div>
         ))}
+      </div>
       </div>
 
       {filteredStudents.length === 0 && students.length > 0 && (
